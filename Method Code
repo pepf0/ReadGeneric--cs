@@ -1,0 +1,36 @@
+ static T Read<T>(string s)
+ {
+     //Creates the variable that will get returned in the end
+     T i;
+     while (true)
+     {
+         //Outputs the Text Parameter
+         Console.Write(s);
+         //Reads the Input from Console
+         string input = Console.ReadLine();
+         try
+         {
+             //trys to convert the input into i
+             i = (T)Convert.ChangeType(input, typeof(T));
+             break;
+         }
+         catch (Exception ex)
+         {
+             //Error Message
+             string msg = ex.Message;
+             //if the start of the message is t, then the error is that it cant convert the input into that variable.
+             //if it is anything else, the error is that it is an object and cannot be converted.
+             if (msg[0] == 'T')
+             {
+                 Console.WriteLine($"Can't convert \"{input}\" into {typeof(T).Name}");
+             }
+             else
+             {
+                 Console.WriteLine($"This is not a valid Data Type to read!");
+                 return default(T);
+             }
+
+         }
+     }
+     return i;
+ }
